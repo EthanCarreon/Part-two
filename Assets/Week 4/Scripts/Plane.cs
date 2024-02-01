@@ -15,6 +15,7 @@ public class Plane : MonoBehaviour
     public AnimationCurve landing;
     float landingTimer;
 
+
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -22,6 +23,7 @@ public class Plane : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
 
         rigidbody = GetComponent<Rigidbody2D>();
+
     }
 
     private void FixedUpdate()
@@ -38,6 +40,7 @@ public class Plane : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKey(KeyCode.Space))
         {
             landingTimer += 0.5f * Time.deltaTime;
