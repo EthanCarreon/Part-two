@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Plane : MonoBehaviour
@@ -7,13 +8,17 @@ public class Plane : MonoBehaviour
 
     public List<Vector2> points;
     public float newPositionThreshold = 0.2f;
+    float destroyZone = 0.5f;
     Vector2 lastPosition;
     LineRenderer lineRenderer;
     Vector2 currentPosition;
     Rigidbody2D rigidbody;
     public float speed = 1;
     public AnimationCurve landing;
+    SpriteRenderer spriteRenderer;
     float landingTimer;
+    List<Collider2D> planesInRadius = new List<Collider2D>();
+
 
     private void Start()
     {
@@ -22,6 +27,7 @@ public class Plane : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
 
         rigidbody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -63,6 +69,19 @@ public class Plane : MonoBehaviour
                 lineRenderer.positionCount--;
             }
         }
+
+        foreach (Collider2D planeCollider in planesInRadius)
+        {
+            float distance = Vector3.Distance(transform.position, planeCollider.transform.position);
+
+            if (distance < destroyZone)
+            {
+                Destroy(planeCollider.gameObject);
+                Destroy(gameObject);
+                break;
+            }
+        }
+
     }
 
     private void OnMouseDown()
@@ -86,5 +105,27 @@ public class Plane : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        planesInRadius.Add(collision);
+        spriteRenderer.color = Color.red;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (planesInRadius.Contains(collision))
+        {
+            planesInRadius.Remove(collision);
+            if (planesInRadius.Count == 0)
+            {
+                spriteRenderer.color = Color.white;
+            }
+            
+        }
+        
+    }
+
+
 
 }
