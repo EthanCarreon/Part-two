@@ -10,8 +10,6 @@ public class PlaneSpawner : MonoBehaviour
     float randomSpeed;
     float randomRotation;
 
-    float destroyZone = 0.5f;
-
     float spawnTimer = 0;
     public float spawnRate = 2;
 
@@ -46,9 +44,5 @@ public class PlaneSpawner : MonoBehaviour
 
             spawnTimer = 0;
         }
-
-
     }
-
-
 }
