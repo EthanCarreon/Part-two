@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
         else if (spawnTimer < 0)
         {
             spawnTimer = 5;
-            Instantiate(prefab, spawn.position, spawn.rotation);
+            spawnDagger();
         }
 
         if (destroyTimer > 0)
@@ -47,4 +47,11 @@ public class Weapon : MonoBehaviour
         collision.gameObject.SendMessage("TakeDamage", 1, SendMessageOptions.DontRequireReceiver);
         Destroy(gameObject);
     }
+
+    public void spawnDagger()
+    {
+        Instantiate(prefab, spawn.position, spawn.rotation);
+    }
 }
+
+
