@@ -22,7 +22,7 @@ public class Knight : MonoBehaviour
         animator = GetComponent<Animator>();
         health = maxHealth;
 
-        health = PlayerPrefs.GetFloat("health", maxHealth);
+        //health = PlayerPrefs.GetFloat("health", 0);
     }
 
 
@@ -60,6 +60,7 @@ public class Knight : MonoBehaviour
 
         clickingOnSelf = true;
         SendMessage("TakeDamage", 1);
+
     }
 
     private void OnMouseUp()
@@ -76,7 +77,7 @@ public class Knight : MonoBehaviour
 
         Debug.Log("Health: " + health);
 
-        if (PlayerPrefs.GetFloat("health", health) == 0)
+        if (health == 0)
         {
             isDead = true;
             animator.SetTrigger("Death");
