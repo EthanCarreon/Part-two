@@ -35,6 +35,7 @@ public class Plane : MonoBehaviour
             float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
             rigidbody.rotation = -angle;
         }
+
         rigidbody.MovePosition(rigidbody.position + (Vector2)transform.up * speed * Time.deltaTime); 
     }
 

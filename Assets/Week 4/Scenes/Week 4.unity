@@ -449,6 +449,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2702228917815328548, guid: 0e0273a3f9915614bb04a95fc4e81afa, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4026003140329905152, guid: 0e0273a3f9915614bb04a95fc4e81afa, type: 3}
       propertyPath: m_Name
       value: Plane
