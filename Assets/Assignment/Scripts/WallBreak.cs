@@ -23,20 +23,15 @@ public class WallBreak : MonoBehaviour
     {
         if (wallhealth == 0)
         {
-            wallDestroyed();
+            wallMoved();
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        SendMessage("WallDamage", 1);
+        wallhealth -= 1;
     }
 
-    void WallDamage(float damage)
-    {
-        wallhealth -= damage;        
-    }
-
-    void wallDestroyed()
+    void wallMoved()
     {
 
         wallDisplay += 0.5f * Time.deltaTime;
@@ -47,7 +42,6 @@ public class WallBreak : MonoBehaviour
             Destroy(gameObject);
         }
         transform.position = Vector3.Lerp(transform.position, targetPos.position, interpolation);
-
 
 
     }

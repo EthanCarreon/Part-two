@@ -7,11 +7,11 @@ using UnityEngine;
 public class BossBattle : MonoBehaviour
 {
     public Slider bossbar;
+    public GameObject winScreen;
 
     void BossTakeDamage(float damage)
     {
         bossbar.value -= damage;
-        Debug.Log(bossbar.value);
     }
 
     private void Update()
@@ -19,6 +19,8 @@ public class BossBattle : MonoBehaviour
         if (bossbar.value == 0)
         {
             gameObject.SetActive(false);
+            winScreen.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
