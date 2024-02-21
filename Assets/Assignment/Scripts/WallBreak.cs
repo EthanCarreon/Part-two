@@ -11,6 +11,9 @@ public class WallBreak : MonoBehaviour
 
     public Transform targetPos;
     public AnimationCurve wallbreaking;
+
+    public GameObject sword;
+
     float wallDisplay = 0f;
     Renderer renderer;
 
@@ -28,7 +31,10 @@ public class WallBreak : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        wallhealth -= 1;
+        if (collision.gameObject == sword)
+        {
+            wallhealth -= 1;
+        }   
     }
 
     void wallMoved()

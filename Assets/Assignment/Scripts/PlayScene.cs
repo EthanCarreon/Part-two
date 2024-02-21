@@ -24,4 +24,6 @@ public class PlayScene : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1.0f;
     }
+
+
 }
