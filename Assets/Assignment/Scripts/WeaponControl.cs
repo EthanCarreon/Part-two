@@ -8,9 +8,11 @@ public class WeaponControl : MonoBehaviour
 {
     public GameObject gun;
     public GameObject swordimage;
+
+    Animator animator;
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class WeaponControl : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
+                animator.SetTrigger("ratshoot");
                 SendMessage("ShootBullet");
             }
         }

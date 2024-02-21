@@ -12,20 +12,22 @@ public class Shoot : MonoBehaviour
     public GameObject sword;
 
     public Animator swordSwing;
+    Animator animator;
 
     public float bulletForce = 20f;
 
     private void Start()
     {
         swordSwing = sword.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void ShootBullet()
     {
+
         GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(shootPoint.up * bulletForce, ForceMode2D.Impulse);
-
+        rb.AddForce(shootPoint.up * bulletForce, ForceMode2D.Impulse);  
     }
 
     void SwingSword()

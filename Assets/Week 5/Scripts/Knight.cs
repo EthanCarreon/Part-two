@@ -32,7 +32,7 @@ public class Knight : MonoBehaviour
 
         movement = destination - (Vector2)transform.position;
         if (movement.magnitude < 0.1)
-        {
+        {   
             movement = Vector2.zero;
         }
         rb.MovePosition(rb.position + movement.normalized * speed * Time.deltaTime);
