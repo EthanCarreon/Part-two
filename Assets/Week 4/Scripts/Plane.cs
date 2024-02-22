@@ -9,13 +9,13 @@ public class Plane : MonoBehaviour
     public float newPositionThreshold = 0.2f;
     Vector2 lastPosition;
     LineRenderer lineRenderer;
-    Vector2 currentPosition;
-    Rigidbody2D rigidbody;
+    Vector2 currentPosition;  
     public float speed = 1;
     public AnimationCurve landing;
     public GameObject runway;
-    bool isLanding = false;
     float landingTimer;
+
+    Rigidbody2D rb;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class Plane : MonoBehaviour
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0, transform.position);
 
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -33,10 +33,10 @@ public class Plane : MonoBehaviour
         {
             Vector2 direction = points[0] - currentPosition;
             float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-            rigidbody.rotation = -angle;
+            rb.rotation = -angle;
         }
 
-        rigidbody.MovePosition(rigidbody.position + (Vector2)transform.up * speed * Time.deltaTime); 
+        rb.MovePosition(rb.position + (Vector2)transform.up * speed * Time.deltaTime); 
     }
 
     private void Update()
@@ -95,11 +95,6 @@ public class Plane : MonoBehaviour
             Destroy(gameObject);
         }
         transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
-    }
-
-    private void OnTriggerEnter2D(Collider2D runway)
-    {
-        Landing();
     }
 
 }

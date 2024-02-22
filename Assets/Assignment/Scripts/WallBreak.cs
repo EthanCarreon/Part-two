@@ -15,12 +15,6 @@ public class WallBreak : MonoBehaviour
     public GameObject sword;
 
     float wallDisplay = 0f;
-    Renderer renderer;
-
-    private void Start()
-    {
-        Renderer renderer = GetComponent<Renderer>();
-    }
 
     private void Update()
     {
