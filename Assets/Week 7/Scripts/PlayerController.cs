@@ -4,31 +4,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
-    bool isPlayerClick = false;
+    Rigidbody2D rb;
+
+    public float speed = 100;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    void Update()
-    {
-        if (isPlayerClick)
-        {
-            clickedOn();
-        }
-    }
-
-    void clickedOn()
-    {
-        spriteRenderer.color = Color.green;
+        rb = GetComponent<Rigidbody2D>();
+        clickedOn(false);
     }
 
     private void OnMouseDown()
     {
-        isPlayerClick = true;
+        Controller.SetSelectedPlayer(this);
+    }
+
+    public void clickedOn(bool isSelected)
+    {
+        if (isSelected)
+        {
+            spriteRenderer.color = Color.green;
+        }
+        else
+        {
+            spriteRenderer.color = Color.red;
+        }
+    }
+
+    public void Move(Vector2 direction)
+    {
+        rb.AddForce(direction * speed);
     }
 }
