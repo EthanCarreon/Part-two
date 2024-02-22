@@ -3,16 +3,25 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Controller : MonoBehaviour
 {
 
     public Slider chargeSlider;
     float chargeValue;
-    public float maxCharge = 1;
+    public float maxCharge = 100;
+    
     Vector2 direction;
+
+    public static Ball score;
     public static PlayerController SelectedPlayer { get; private set; }
 
+    public static void increaseScore(Ball score)
+    {
+        score.currentScore++;
+        Debug.Log("current score: " + score.currentScore);
+    }
     public static void SetSelectedPlayer(PlayerController player)
     {
         if (SelectedPlayer != null)
