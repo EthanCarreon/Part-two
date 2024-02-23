@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
 
 public class Controller : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Controller : MonoBehaviour
         score.currentScore++;
         Debug.Log("current score: " + score.currentScore);
     }
+    
     public static void SetSelectedPlayer(PlayerController player)
     {
         if (SelectedPlayer != null)
@@ -63,5 +65,7 @@ public class Controller : MonoBehaviour
         {
             direction = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)SelectedPlayer.transform.position).normalized * chargeValue;
         }
+
+        
     }
 }
